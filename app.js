@@ -37,6 +37,7 @@ let items = [
         comment: "Popular winter item"
     }
 ];
+let currentEditOriginalName = null;
 function showFeedback(message, type) {
     const feedbackDiv = document.getElementById('feedback');
     if (feedbackDiv) {
@@ -58,6 +59,7 @@ function clearForm() {
     document.getElementById('stockStatus').value = 'In Stock';
     document.getElementById('popular').checked = false;
     document.getElementById('comment').value = '';
+    currentEditOriginalName = null;
 }
 function populateCategorySelect() {
     const categorySelect = document.getElementById('category');
@@ -77,20 +79,33 @@ function renderTable(filteredItems = items) {
     filteredItems.forEach(item => {
         const row = tbody.insertRow();
         row.innerHTML = `
-      <td>${item.id}</td>
-      <td>${item.name}</td>
-      <td>${item.category}</td>
+      <td>${escapeHtml(item.id)}</td>
+      <td>${escapeHtml(item.name)}</td>
+      <td>${escapeHtml(item.category)}</td>
       <td>${item.quantity}</td>
       <td>$${item.price.toFixed(2)}</td>
-      <td>${item.supplier}</td>
+      <td>${escapeHtml(item.supplier)}</td>
       <td>${item.stockStatus}</td>
       <td>${item.popular ? 'Yes' : 'No'}</td>
-      <td>${item.comment || '-'}</td>
+      <td>${item.comment ? escapeHtml(item.comment) : '-'}</td>
       <td>
-        <button class="btn-edit" onclick="editItem('${item.name.replace(/'/g, "\\'")}')">编辑</button>
-        <button class="btn-delete" onclick="deleteItem('${item.name.replace(/'/g, "\\'")}')">删除</button>
+        <button class="btn-edit" onclick="editItem('${escapeHtml(item.name).replace(/'/g, "\\'")}')">编辑</button>
+        <button class="btn-delete" onclick="deleteItem('${escapeHtml(item.name).replace(/'/g, "\\'")}')">删除</button>
       </td>
     `;
+    });
+}
+function escapeHtml(str) {
+    return str.replace(/[&<>]/g, function (m) {
+        if (m === '&')
+            return '&amp;';
+        if (m === '<')
+            return '&lt;';
+        if (m === '>')
+            return '&gt;';
+        return m;
+    }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function (c) {
+        return c;
     });
 }
 function addOrUpdateItem() {
@@ -115,44 +130,69 @@ function addOrUpdateItem() {
         showFeedback('错误：价格必须是大于0的数字！', 'error');
         return;
     }
-    const existingByName = items.find(item => item.name === name);
-    const existingById = items.find(item => item.id === id);
-    if (existingById && (!existingByName || existingByName.id !== id)) {
+    if (currentEditOriginalName !== null) {
+        const existingItem = items.find(item => item.name === currentEditOriginalName);
+        if (!existingItem) {
+            showFeedback('错误：要编辑的商品不存在！', 'error');
+            clearForm();
+            return;
+        }
+        if (existingItem.id !== id && items.some(item => item.id === id)) {
+            showFeedback('错误：该 Item ID 已被其他商品使用！', 'error');
+            return;
+        }
+        if (existingItem.name !== name && items.some(item => item.name === name)) {
+            showFeedback('错误：该商品名称已被其他商品使用！', 'error');
+            return;
+        }
+        existingItem.id = id;
+        existingItem.name = name;
+        existingItem.category = category;
+        existingItem.quantity = quantity;
+        existingItem.price = price;
+        existingItem.supplier = supplier;
+        existingItem.stockStatus = stockStatus;
+        existingItem.popular = popular;
+        existingItem.comment = comment || undefined;
+        showFeedback(`商品 "${name}" 更新成功！`, 'success');
+        clearForm();
+        renderTable();
+        return;
+    }
+    if (items.some(item => item.id === id)) {
         showFeedback('错误：该 Item ID 已存在！', 'error');
         return;
     }
-    if (existingByName) {
-        // 更新
-        existingByName.id = id;
-        existingByName.category = category;
-        existingByName.quantity = quantity;
-        existingByName.price = price;
-        existingByName.supplier = supplier;
-        existingByName.stockStatus = stockStatus;
-        existingByName.popular = popular;
-        existingByName.comment = comment || undefined;
-        showFeedback(`商品 "${name}" 更新成功！`, 'success');
+    if (items.some(item => item.name === name)) {
+        showFeedback('错误：该商品名称已存在！', 'error');
+        return;
     }
-    else {
-        // 新增
-        const newItem = { id, name, category, quantity, price, supplier, stockStatus, popular, comment: comment || undefined };
-        items.push(newItem);
-        showFeedback(`商品 "${name}" 添加成功！`, 'success');
-    }
-    renderTable();
+    const newItem = { id, name, category, quantity, price, supplier, stockStatus, popular, comment: comment || undefined };
+    items.push(newItem);
+    showFeedback(`商品 "${name}" 添加成功！`, 'success');
     clearForm();
+    renderTable();
 }
 function deleteItem(name) {
-    if (confirm(`确定要删除 "${name}" 吗？`)) {
-        items = items.filter(item => item.name !== name);
-        showFeedback(`商品 "${name}" 已删除！`, 'success');
-        renderTable();
+    if (confirm(`确定要删除商品 "${name}" 吗？`)) {
+        const index = items.findIndex(item => item.name === name);
+        if (index !== -1) {
+            items.splice(index, 1);
+            showFeedback(`商品 "${name}" 已删除！`, 'success');
+            renderTable();
+        }
+        else {
+            showFeedback(`错误：未找到商品 "${name}"`, 'error');
+        }
     }
 }
 function editItem(name) {
     const item = items.find(i => i.name === name);
-    if (!item)
+    if (!item) {
+        showFeedback(`错误：未找到商品 "${name}"`, 'error');
         return;
+    }
+    currentEditOriginalName = item.name;
     document.getElementById('itemId').value = item.id;
     document.getElementById('itemName').value = item.name;
     document.getElementById('category').value = item.category;
@@ -170,6 +210,9 @@ function searchItem() {
         return;
     }
     const filtered = items.filter(item => item.name.toLowerCase().includes(keyword));
+    if (filtered.length === 0) {
+        showFeedback(`未找到包含 "${keyword}" 的商品`, 'error');
+    }
     renderTable(filtered);
 }
 function showAllItems() {
