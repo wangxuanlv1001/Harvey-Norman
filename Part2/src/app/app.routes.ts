@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+﻿import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home';
 import { InventoryFormComponent } from './inventory-form/inventory-form';
 import { InventoryListComponent } from './inventory-list/inventory-list';

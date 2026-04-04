@@ -1,4 +1,4 @@
-<h2>{{ editingOriginalName ? '编辑商品' : '添加商品' }}</h2>
+﻿<h2>{{ editingOriginalName ? '编辑商品' : '添加商品' }}</h2>
 <div *ngIf="message" [class]="messageType" class="feedback">{{ message }}</div>
 <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
   <div class="form-grid">

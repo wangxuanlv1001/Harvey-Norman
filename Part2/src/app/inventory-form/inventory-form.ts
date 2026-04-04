@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InventoryService } from '../inventory.service';
@@ -55,7 +55,7 @@ export class InventoryFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.itemForm.invalid) {
-      this.showMessage('请正确填写所有必填字段（ID、名称、供应商、数量≥0、价格>0）', 'error');
+      this.showMessage('请正确填写所有必填字段', 'error');
       return;
     }
     const val = this.itemForm.value;

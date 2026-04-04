@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-help',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './help.html',
-  styleUrls: ['./help.css']
+  templateUrl: './help.component.html',
+  styleUrls: ['./help.component.css']
 })
 export class HelpComponent { }

@@ -1,4 +1,4 @@
-.search-box { display: flex; gap: 10px; margin-bottom: 20px; }
+﻿.search-box { display: flex; gap: 10px; margin-bottom: 20px; }
 .search-box input { flex: 1; padding: 8px; }
 .search-table { width: 100%; border-collapse: collapse; }
 .search-table th, .search-table td { border: 1px solid #ddd; padding: 6px; text-align: left; }
