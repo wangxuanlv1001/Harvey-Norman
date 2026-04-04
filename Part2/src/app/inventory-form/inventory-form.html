@@ -1,0 +1,19 @@
+<h2>{{ editingOriginalName ? '编辑商品' : '添加商品' }}</h2>
+<div *ngIf="message" [class]="messageType" class="feedback">{{ message }}</div>
+<form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+  <div class="form-grid">
+    <input type="text" formControlName="id" placeholder="Item ID (唯一)" required>
+    <input type="text" formControlName="name" placeholder="商品名称" required>
+    <select formControlName="category"><option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option></select>
+    <input type="number" formControlName="quantity" placeholder="数量" min="0" step="1">
+    <input type="number" formControlName="price" placeholder="价格 ($)" min="0.01" step="0.01">
+    <input type="text" formControlName="supplier" placeholder="供应商" required>
+    <select formControlName="stockStatus"><option *ngFor="let s of stockStatuses" [value]="s">{{ s }}</option></select>
+    <label><input type="checkbox" formControlName="popular"> Popular Item</label>
+    <textarea formControlName="comment" placeholder="备注（可选）" rows="3"></textarea>
+  </div>
+  <div class="button-group">
+    <button type="submit" class="btn-primary">保存商品</button>
+    <button type="button" class="btn-secondary" (click)="resetForm()">清空表单</button>
+  </div>
+</form>
