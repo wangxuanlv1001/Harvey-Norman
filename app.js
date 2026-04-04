@@ -3,7 +3,7 @@
 // Author: 吕望轩
 // Date: April 2026
 // Last updated: 2026-04-04 - Minor tweak for commit count
-// Description: TypeScript-based Inventory Management System for Harvey Norman
+// Description: TypeScript-based Inventory Management System for Harvey Norman// Version 1.0.1
 let items = [
     {
         id: "ITEM001",
