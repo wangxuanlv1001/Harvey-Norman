@@ -1,21 +1,12 @@
 ﻿import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';   // 必须导入
 
 @Component({
   selector: 'app-home',
-  standalone: true,   // 如果是独立组件
+  standalone: true,
+  imports: [CommonModule, RouterLink],          // 添加 RouterLink
   templateUrl: './home.component.html',
-  styles: [`
-    .faq .question {
-      background: #ecf0f1;
-      margin: 1rem 0;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-    }
-    h3 {
-      color: #2980b9;
-    }
-  `]
+  styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  // 组件逻辑
-}
+export class HomeComponent { }

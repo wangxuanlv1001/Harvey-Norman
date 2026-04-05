@@ -1,8 +1,71 @@
-﻿<h2>Privacy and Security Analysis</h2>
-<div class="content">
-  <section><h3>1. Local Data Storage & Ephemeral Nature</h3><p>All inventory data is stored in browser memory and never sent to any external server. Data is lost when the browser is closed, ensuring user privacy with no persistent records. Suitable for demo and temporary management scenarios.</p></section>
-  <section><h3>2. Input Validation & Injection Prevention</h3><p>All user inputs are validated on the front end (Angular reactive forms). Numeric fields reject non-numeric input, and text fields are HTML-escaped using Angular's default interpolation protection, preventing XSS attacks. Confirmation dialogs are used for update and delete operations to avoid mistakes.</p></section>
-  <section><h3>3. Unique Identifier Constraints</h3><p>The system enforces uniqueness of Item ID and product name to prevent data duplication and logic errors. Checks are performed during add/update and user is notified of duplicates.</p></section>
-  <section><h3>4. No Third-Party Tracking</h3><p>The application does not use any third-party analytics, advertising, or tracking scripts. User behavior is not recorded or shared.</p></section>
-  <section><h3>5. Mobile Device Security Recommendations</h3><p>When using on mobile devices, users are advised not to store sensitive business data locally (as this application does not provide encrypted storage). Future versions could add IndexedDB encryption.</p></section>
+﻿<!-- src/app/privacy-security/privacy-security.component.html -->
+<div class="privacy-wrapper">
+  <!-- 页面标题区域 -->
+  <div class="page-header">
+    <h1>🔐 Privacy & Security</h1>
+    <p>Your data is handled with care. Learn how we protect your information.</p>
+  </div>
+
+  <!-- 卡片网格：每个要点一张卡片 -->
+  <div class="cards-grid">
+    
+    <!-- 卡片 1：本地存储与临时性 -->
+    <div class="privacy-card">
+      <div class="card-icon">💾</div>
+      <h2>Local Data Storage & Ephemeral Nature</h2>
+      <p>
+        All inventory data is stored in browser memory and never sent to any external server. 
+        Data is lost when the browser is closed, ensuring user privacy with no persistent records. 
+        Suitable for demo and temporary management scenarios.
+      </p>
+    </div>
+
+    <!-- 卡片 2：输入验证与注入防护 -->
+    <div class="privacy-card">
+      <div class="card-icon">🛡️</div>
+      <h2>Input Validation & Injection Prevention</h2>
+      <p>
+        All user inputs are validated on the front end (Angular reactive forms). 
+        Numeric fields reject non-numeric input, and text fields are HTML-escaped using 
+        Angular's default interpolation protection, preventing XSS attacks. 
+        Confirmation dialogs are used for update and delete operations to avoid mistakes.
+      </p>
+    </div>
+
+    <!-- 卡片 3：唯一标识约束 -->
+    <div class="privacy-card">
+      <div class="card-icon">🔢</div>
+      <h2>Unique Identifier Constraints</h2>
+      <p>
+        The system enforces uniqueness of Item ID and product name to prevent data duplication 
+        and logic errors. Checks are performed during add/update and user is notified of duplicates.
+      </p>
+    </div>
+
+    <!-- 卡片 4：无第三方追踪 -->
+    <div class="privacy-card">
+      <div class="card-icon">🚫</div>
+      <h2>No Third-Party Tracking</h2>
+      <p>
+        The application does not use any third-party analytics, advertising, or tracking scripts. 
+        User behavior is not recorded or shared.
+      </p>
+    </div>
+
+    <!-- 卡片 5：移动设备安全建议 -->
+    <div class="privacy-card">
+      <div class="card-icon">📱</div>
+      <h2>Mobile Device Security Recommendations</h2>
+      <p>
+        When using on mobile devices, users are advised not to store sensitive business data 
+        locally (as this application does not provide encrypted storage). 
+        Future versions could add IndexedDB encryption.
+      </p>
+    </div>
+  </div>
+
+  <!-- 底部备注（可选） -->
+  <div class="footer-note">
+    <p>✅ This system follows industry best practices for front-end security. No personal data is collected.</p>
+  </div>
 </div>

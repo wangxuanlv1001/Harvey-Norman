@@ -1,2 +1,112 @@
-﻿.content section { background: #f8f9fa; margin: 1rem 0; padding: 1rem; border-radius: 8px; }
-h3 { color: #2c3e50; }
+﻿/* src/app/privacy-security/privacy-security.component.css */
+
+.privacy-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* 页面标题区域 */
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #1e293b, #2c3e66);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  font-size: 1.2rem;
+  color: #475569;
+}
+
+/* 卡片网格：响应式，最小宽度 300px */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* 卡片样式：与 Home 页面卡片一致，并添加悬浮效果 */
+.privacy-card {
+  background: white;
+  border-radius: 28px;
+  padding: 1.8rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* 悬浮效果：上浮 + 阴影加深 + 轻微边框变亮 */
+.privacy-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.15);
+  border-color: rgba(44, 62, 102, 0.2);
+}
+
+/* 卡片图标 */
+.card-icon {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+/* 卡片标题 */
+.privacy-card h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+/* 卡片文字 */
+.privacy-card p {
+  color: #475569;
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* 底部备注 */
+.footer-note {
+  text-align: center;
+  background: #f1f5f9;
+  border-radius: 60px;
+  padding: 1rem 2rem;
+  margin-top: 2rem;
+}
+
+.footer-note p {
+  margin: 0;
+  color: #2c3e66;
+  font-weight: 500;
+}
+
+/* 响应式：手机上去掉内边距，卡片圆角稍小 */
+@media (max-width: 768px) {
+  .privacy-wrapper {
+    padding: 1rem 1rem 2rem;
+  }
+  .page-header h1 {
+    font-size: 1.8rem;
+  }
+  .privacy-card {
+    padding: 1.5rem;
+  }
+  .privacy-card h2 {
+    font-size: 1.3rem;
+  }
+  .footer-note {
+    padding: 0.8rem 1rem;
+  }
+}
