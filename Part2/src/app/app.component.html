@@ -1,0 +1,12 @@
+﻿<!-- 导航栏 - 使用 routerLink 确保单页跳转 -->
+<nav>
+  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">首页</a>
+  <a routerLink="/manage" routerLinkActive="active">管理库存</a>
+  <a routerLink="/list" routerLinkActive="active">库存列表</a>
+  <a routerLink="/search" routerLinkActive="active">搜索</a>
+  <a routerLink="/privacy" routerLinkActive="active">隐私安全</a>
+  <a routerLink="/help" routerLinkActive="active">帮助</a>
+</nav>
+
+<!-- 路由视图占位符 -->
+<router-outlet></router-outlet>

@@ -1,0 +1,26 @@
+﻿/* src/app/home/home.component.css */
+.faq .question {
+  background: #ecf0f1;
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+h3 {
+  color: #2980b9;
+}
+.faq-item {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.faq-item h4 {
+  color: #2c3e66;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.faq-item p {
+  color: #334155;
+  line-height: 1.5;
+}

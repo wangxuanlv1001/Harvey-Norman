@@ -1,0 +1,19 @@
+﻿<h2>Search Products</h2>
+<div class="search-box">
+  <input type="text" [(ngModel)]="keyword" placeholder="Enter product name keyword" (keyup.enter)="search()">
+  <button (click)="search()" class="btn-primary">Search</button>
+  <button (click)="clear()" class="btn-secondary">Clear</button>
+</div>
+<div *ngIf="message" class="feedback error">{{ message }}</div>
+<div *ngIf="results.length > 0">
+  <h3>Search Results ({{ results.length }})</h3>
+  <table class="search-table">
+    <thead><tr><th>ID</th><th>Name</th><th>Category</th><th>Quantity</th><th>Price</th><th>Supplier</th><th>Stock Status</th><th>Popular</th></tr></thead>
+    <tbody>
+      <tr *ngFor="let item of results">
+        <td>{{ item.id }}</td><td>{{ item.name }}</td><td>{{ item.category }}</td><td>{{ item.quantity }}</td>
+        <td>{{ item.price | currency }}</td><td>{{ item.supplier }}</td><td>{{ item.stockStatus }}</td><td>{{ item.popular ? 'Yes' : 'No' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

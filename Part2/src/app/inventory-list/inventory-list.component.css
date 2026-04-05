@@ -1,0 +1,16 @@
+﻿.product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.product-item {
+  background: white;
+  border-radius: 20px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}

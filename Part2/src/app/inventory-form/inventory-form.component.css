@@ -1,0 +1,8 @@
+﻿.form-group {
+  margin-bottom: 1.5rem;
+}
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}

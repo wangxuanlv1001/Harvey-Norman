@@ -16,26 +16,26 @@ export class InventoryService {
     return this.items.filter(item => item.name.toLowerCase().includes(lower));
   }
   addItem(item: Item): { success: boolean; message: string } {
-    if (this.items.some(i => i.id === item.id)) return { success: false, message: 'Item ID 已存在！' };
-    if (this.items.some(i => i.name === item.name)) return { success: false, message: '商品名称已存在！' };
+    if (this.items.some(i => i.id === item.id)) return { success: false, message: 'Item ID already exists!' };
+    if (this.items.some(i => i.name === item.name)) return { success: false, message: 'Product name already exists!' };
     this.items.push({ ...item });
-    return { success: true, message: `商品 "${item.name}" 添加成功！` };
+    return { success: true, message: `Product "${item.name}" added successfully!` };
   }
   updateItem(originalName: string, updated: Item): { success: boolean; message: string } {
     const index = this.items.findIndex(i => i.name === originalName);
-    if (index === -1) return { success: false, message: '商品不存在！' };
+    if (index === -1) return { success: false, message: 'Product not found!' };
     const existing = this.items[index];
     if (existing.id !== updated.id && this.items.some(i => i.id === updated.id))
-      return { success: false, message: '新 Item ID 已被其他商品使用！' };
+      return { success: false, message: 'New Item ID already used by another product!' };
     if (existing.name !== updated.name && this.items.some(i => i.name === updated.name))
-      return { success: false, message: '新商品名称已被其他商品使用！' };
+      return { success: false, message: 'New product name already used!' };
     this.items[index] = { ...updated };
-    return { success: true, message: `商品 "${updated.name}" 更新成功！` };
+    return { success: true, message: `Product "${updated.name}" updated successfully!` };
   }
   deleteItem(name: string): { success: boolean; message: string } {
     const index = this.items.findIndex(i => i.name === name);
-    if (index === -1) return { success: false, message: '商品不存在！' };
+    if (index === -1) return { success: false, message: 'Product not found!' };
     this.items.splice(index, 1);
-    return { success: true, message: `商品 "${name}" 已删除！` };
+    return { success: true, message: `Product "${name}" deleted successfully!` };
   }
 }

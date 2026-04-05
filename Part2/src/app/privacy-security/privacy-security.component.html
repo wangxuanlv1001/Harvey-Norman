@@ -1,0 +1,8 @@
+﻿<h2>Privacy and Security Analysis</h2>
+<div class="content">
+  <section><h3>1. Local Data Storage & Ephemeral Nature</h3><p>All inventory data is stored in browser memory and never sent to any external server. Data is lost when the browser is closed, ensuring user privacy with no persistent records. Suitable for demo and temporary management scenarios.</p></section>
+  <section><h3>2. Input Validation & Injection Prevention</h3><p>All user inputs are validated on the front end (Angular reactive forms). Numeric fields reject non-numeric input, and text fields are HTML-escaped using Angular's default interpolation protection, preventing XSS attacks. Confirmation dialogs are used for update and delete operations to avoid mistakes.</p></section>
+  <section><h3>3. Unique Identifier Constraints</h3><p>The system enforces uniqueness of Item ID and product name to prevent data duplication and logic errors. Checks are performed during add/update and user is notified of duplicates.</p></section>
+  <section><h3>4. No Third-Party Tracking</h3><p>The application does not use any third-party analytics, advertising, or tracking scripts. User behavior is not recorded or shared.</p></section>
+  <section><h3>5. Mobile Device Security Recommendations</h3><p>When using on mobile devices, users are advised not to store sensitive business data locally (as this application does not provide encrypted storage). Future versions could add IndexedDB encryption.</p></section>
+</div>

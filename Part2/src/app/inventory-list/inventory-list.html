@@ -1,17 +1,1 @@
-﻿<h2>商品列表</h2>
-<div class="toolbar">
-  <button (click)="togglePopularFilter()" class="btn-info">{{ showPopularOnly ? '显示全部' : '只显示热门商品' }}</button>
-</div>
-<div *ngIf="message" class="feedback success">{{ message }}</div>
-<table class="inventory-table">
-  <thead><tr><th>ID</th><th>名称</th><th>类别</th><th>数量</th><th>价格</th><th>供应商</th><th>库存状态</th><th>热门</th><th>备注</th><th>操作</th></tr></thead>
-  <tbody>
-    <tr *ngFor="let item of items">
-      <td>{{ item.id }}</td><td>{{ item.name }}</td><td>{{ item.category }}</td><td>{{ item.quantity }}</td>
-      <td>{{ item.price | currency:'USD':'symbol':'1.2-2' }}</td><td>{{ item.supplier }}</td><td>{{ item.stockStatus }}</td>
-      <td>{{ item.popular ? '是' : '否' }}</td><td>{{ item.comment || '-' }}</td>
-      <td><button class="btn-edit" (click)="editItem(item.name)">编辑</button><button class="btn-delete" (click)="deleteItem(item.name)">删除</button></td>
-    </tr>
-    <tr *ngIf="items.length === 0"><td colspan="10">暂无商品数据</td></tr>
-  </tbody>
-</table>
+<p>inventory-list works!</p>

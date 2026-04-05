@@ -1,81 +1,13 @@
-<!DOCTYPE html>
-<html lang="zh">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harvey Norman 库存管理系统 - Part 1</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <title>InventoryApp</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-    <div class="container">
-        <h1>Harvey Norman 库存管理系统</h1>
-        <p class="subtitle">TypeScript 版 - 数据在浏览器会话内有效</p>
-
-        <!-- 操作表单 -->
-        <div class="form-container">
-            <h2>添加 / 编辑商品</h2>
-            
-            <div class="form-grid">
-                <input type="text" id="itemId" placeholder="Item ID (必须唯一)" required>
-                <input type="text" id="itemName" placeholder="商品名称" required>
-                
-                <select id="category" required></select>
-                
-                <input type="number" id="quantity" placeholder="数量" min="0" required>
-                <input type="number" id="price" placeholder="价格 ($)" step="0.01" min="0.01" required>
-                <input type="text" id="supplier" placeholder="供应商名称" required>
-                
-                <select id="stockStatus" required>
-                    <option value="In Stock">In Stock</option>
-                    <option value="Low Stock">Low Stock</option>
-                    <option value="Out of Stock">Out of Stock</option>
-                </select>
-                
-                <label class="popular-label">
-                    <input type="checkbox" id="popular"> Popular Item
-                </label>
-                
-                <textarea id="comment" placeholder="备注（可选）" rows="3"></textarea>
-            </div>
-
-            <div class="button-group">
-                <button onclick="addOrUpdateItem()" class="btn-primary">保存商品</button>
-                <button onclick="clearForm()" class="btn-secondary">清空表单</button>
-            </div>
-        </div>
-
-        <!-- 搜索和显示按钮 -->
-        <div class="search-section">
-            <input type="text" id="searchInput" placeholder="输入商品名称进行搜索...">
-            <button onclick="searchItem()" class="btn-search">搜索</button>
-            <button onclick="showAllItems()" class="btn-info">显示全部商品</button>
-            <button onclick="showPopularItems()" class="btn-info">显示 Popular Items</button>
-        </div>
-
-        <!-- 库存表格 -->
-        <h2>当前库存列表</h2>
-        <table id="inventoryTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>商品名称</th>
-                    <th>类别</th>
-                    <th>数量</th>
-                    <th>价格</th>
-                    <th>供应商</th>
-                    <th>库存状态</th>
-                    <th>Popular</th>
-                    <th>备注</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-
-        <!-- 反馈信息区（使用 innerHTML） -->
-        <div id="feedback" class="feedback"></div>
-    </div>
-
-    <script src="app.js"></script>
+  <app-root></app-root>
 </body>
 </html>
