@@ -26,7 +26,7 @@
   color: #475569;
 }
 
-/* 卡片网格：响应式，最小宽度 300px */
+/* 卡片网格 */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -34,7 +34,7 @@
   margin-bottom: 3rem;
 }
 
-/* 卡片样式：与 Home 页面卡片一致，并添加悬浮效果 */
+/* 卡片样式（无图标版） */
 .privacy-card {
   background: white;
   border-radius: 28px;
@@ -47,17 +47,10 @@
   height: 100%;
 }
 
-/* 悬浮效果：上浮 + 阴影加深 + 轻微边框变亮 */
 .privacy-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.15);
   border-color: rgba(44, 62, 102, 0.2);
-}
-
-/* 卡片图标 */
-.card-icon {
-  font-size: 2.8rem;
-  margin-bottom: 1rem;
 }
 
 /* 卡片标题 */
@@ -92,7 +85,7 @@
   font-weight: 500;
 }
 
-/* 响应式：手机上去掉内边距，卡片圆角稍小 */
+/* 响应式 */
 @media (max-width: 768px) {
   .privacy-wrapper {
     padding: 1rem 1rem 2rem;

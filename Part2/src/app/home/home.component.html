@@ -1,34 +1,66 @@
-﻿<div class="container">
-  <h2>Welcome to Harvey Norman Inventory System</h2>
-  <p class="lead">Streamline your product management – add, edit, search, and track inventory with ease.</p>
-
-  <div class="stats">
-    <div class="stat-card"><div class="stat-number">248</div><div class="stat-label">Total Products</div></div>
-    <div class="stat-card"><div class="stat-number">43</div><div class="stat-label">Popular Items</div></div>
-    <div class="stat-card"><div class="stat-number">12</div><div class="stat-label">Low Stock</div></div>
+﻿<!-- src/app/home/home.component.html -->
+<div class="home-wrapper">
+  <!-- Hero 区域（无图标，只保留文字和按钮） -->
+  <div class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">Harvey Norman<br><span class="accent">Inventory System</span></h1>
+      <p class="hero-subtitle">Streamline your product management – add, edit, search, and track inventory with ease.</p>
+      <div class="hero-buttons">
+        <a routerLink="/manage" class="btn btn-primary btn-large">Manage Products</a>
+        <a routerLink="/list" class="btn btn-outline btn-large">View Inventory</a>
+      </div>
+    </div>
   </div>
 
-  <div class="features">
+  <!-- 统计数据卡片（无图标，只保留数字） -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-number">248</div>
+      <div class="stat-label">Total Products</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">43</div>
+      <div class="stat-label">Popular Items</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">12</div>
+      <div class="stat-label">Low Stock</div>
+    </div>
+  </div>
+
+  <!-- 功能特性网格（无图标） -->
+  <div class="features-grid">
     <div class="feature-card">
-      <h3>📦 Manage Products</h3>
+      <h3>Manage Products</h3>
       <p>Add new products or edit existing ones with a simple form. Update price, stock, and popularity status.</p>
-      <a routerLink="/manage" class="btn-link">Start adding →</a>
+      <a routerLink="/manage" class="feature-link">Start adding →</a>
     </div>
     <div class="feature-card">
-      <h3>🔍 Smart Search</h3>
+      <h3>Smart Search</h3>
       <p>Quickly find products by name. Instant results as you type.</p>
-      <a routerLink="/search" class="btn-link">Try search →</a>
+      <a routerLink="/search" class="feature-link">Try search →</a>
     </div>
     <div class="feature-card">
-      <h3>📋 Full Inventory List</h3>
+      <h3>Full Inventory List</h3>
       <p>View all items in a clean table. Sort, edit, or delete with one click.</p>
-      <a routerLink="/list" class="btn-link">Browse list →</a>
+      <a routerLink="/list" class="feature-link">Browse list →</a>
     </div>
   </div>
 
-  <div class="tips">
-    <p><strong>Pro Tips:</strong> Use the <strong>Popular</strong> tag to highlight best-sellers on the list page.</p>
-    <p>Your data is private – see our <a routerLink="/privacy">Privacy & Security</a> page.</p>
-    <p>Need help? Visit the <a routerLink="/help">Help Center</a> for FAQs.</p>
+  <!-- 快速提示区块（无 emoji） -->
+  <div class="tips-section">
+    <h3>Pro Tips</h3>
+    <div class="tips-grid">
+      <div class="tip-item">
+        <p>Use the <strong>Popular tag</strong> to highlight best‑sellers on the list page.</p>
+      </div>
+      <div class="tip-item">
+        <p>Your data is private – see our <a routerLink="/privacy">Privacy & Security</a> page.</p>
+      </div>
+      <div class="tip-item">
+        <p>Need help? Visit the <a routerLink="/help">Help Center</a> for FAQs.</p>
+      </div>
+    </div>
   </div>
 </div>

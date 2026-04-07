@@ -1,13 +1,12 @@
 /* src/app/home/home.component.css */
 
-/* 整体包装器 */
 .home-wrapper {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 1.5rem 3rem;
 }
 
-/* Hero 区域（带背景渐变 + 装饰） */
+/* Hero 区域 */
 .hero-section {
   position: relative;
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #2c3e66 100%);
@@ -75,7 +74,6 @@
   background: transparent;
   border: 2px solid white;
   color: white;
-  backdrop-filter: blur(4px);
 }
 
 .btn-outline:hover {
@@ -107,11 +105,6 @@
 .stat-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
-}
-
-.stat-icon {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
 }
 
 .stat-number {
@@ -148,11 +141,6 @@
 .feature-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.15);
-}
-
-.feature-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
 }
 
 .feature-card h3 {
@@ -220,10 +208,6 @@
   box-shadow: 0 6px 12px rgba(0,0,0,0.05);
 }
 
-.tip-emoji {
-  font-size: 1.8rem;
-}
-
 .tip-item p {
   margin: 0;
   color: #1e293b;
@@ -238,19 +222,8 @@
 .tip-item a:hover {
   text-decoration: underline;
 }
-.lead {
-  font-size: 1.2rem;
-  color: #5d6e7e;
-  margin-bottom: 2rem;
-}
-.tips {
-  background: #ecf0f1;
-  padding: 1rem 1.5rem;
-  border-radius: 12px;
-  margin-top: 2rem;
-  line-height: 1.6;
-}
-/* 响应式调整 */
+
+/* 响应式 */
 @media (max-width: 768px) {
   .home-wrapper {
     padding: 0 1rem 2rem;
@@ -276,16 +249,4 @@
   .tip-item {
     border-radius: 40px;
   }
-}
-.btn-link {
-  display: inline-block;
-  margin-top: 0.75rem;
-  color: #3498db;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s;
-}
-.btn-link:hover {
-  color: #1f618d;
-  text-decoration: underline;
 }
