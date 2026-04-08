@@ -1,17 +1,47 @@
 ﻿<h2>Product List</h2>
 <div class="toolbar">
-  <button (click)="togglePopularFilter()" class="btn-info">{{ showPopularOnly ? 'Show All' : 'Show Popular Only' }}</button>
+  <button (click)="togglePopularFilter()" class="btn-info">
+    {{ showPopularOnly ? 'Show All' : 'Show Popular Only' }}
+  </button>
 </div>
 <div *ngIf="message" class="feedback success">{{ message }}</div>
+
 <table class="inventory-table">
-  <thead><tr><th>ID</th><th>Name</th><th>Category</th><th>Quantity</th><th>Price</th><th>Supplier</th><th>Stock Status</th><th>Popular</th><th>Comment</th><th>Actions</th></tr></thead>
-  <tbody>
-    <tr *ngFor="let item of items">
-      <td>{{ item.id }}</td><td>{{ item.name }}</td><td>{{ item.category }}</td><td>{{ item.quantity }}</td>
-      <td>{{ item.price | currency:'USD':'symbol':'1.2-2' }}</td><td>{{ item.supplier }}</td><td>{{ item.stockStatus }}</td>
-      <td>{{ item.popular ? 'Yes' : 'No' }}</td><td>{{ item.comment || '-' }}</td>
-      <td><button class="btn-edit" (click)="editItem(item.name)">Edit</button><button class="btn-delete" (click)="deleteItem(item.name)">Delete</button></td>
+  <thead>
+    <tr>
+      <th>ID</th><th>Name</th><th>Category</th><th>Quantity</th><th>Price</th>
+      <th>Supplier</th><th>Stock Status</th><th>Popular</th><th>Comment</th><th>Actions</th>
     </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let item of items">
+      <!-- 正常商品行 -->
+      <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.category }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price | currency:'USD':'symbol':'1.2-2' }}</td>
+        <td>{{ item.supplier }}</td>
+        <td>{{ item.stockStatus }}</td>
+        <td>{{ item.popular ? 'Yes' : 'No' }}</td>
+        <td>{{ item.comment || '-' }}</td>
+        <td>
+          <button class="btn-edit" (click)="editItem(item.name)">Edit</button>
+          <button class="btn-delete" (click)="showDeleteConfirm(item.name)">Delete</button>
+        </td>
+      </tr>
+      <!-- 如果当前商品处于确认删除状态，则添加一个确认行 -->
+      <tr *ngIf="confirmItemName === item.name" class="confirm-row">
+        <td colspan="10">
+          <div class="confirm-box">
+            <span>Are you sure you want to delete "{{ item.name }}"?</span>
+            <button class="btn-confirm-yes" (click)="confirmDelete(item.name)">Yes</button>
+            <button class="btn-confirm-no" (click)="cancelDelete()">No</button>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
     <tr *ngIf="items.length === 0"><td colspan="10">No products available.</td></tr>
   </tbody>
 </table>

@@ -1,13 +1,74 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="zh">
 <head>
-  <meta charset="utf-8">
-  <title>InventoryApp</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harvey Norman Inventory System - Part 1</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <app-root></app-root>
+    <div class="container">
+        <h1>Harvey Norman Inventory Management System</h1>
+        <p class="subtitle">TypeScript Version - Data valid only within session</p>
+
+        <!-- 表单区域 -->
+        <div class="form-container">
+            <h2>Add / Edit Product</h2>
+            
+            <!-- 搜索并加载编辑区域 -->
+            <div class="search-load-section">
+                <input type="text" id="searchEditName" placeholder="Enter product name to edit">
+                <button type="button" id="loadEditBtn" class="btn-search">Load for Edit</button>
+            </div>
+
+            <div class="form-grid">
+                <input type="text" id="itemId" placeholder="Item ID (unique)" required>
+                <input type="text" id="itemName" placeholder="Product Name" required>
+                <select id="category" required></select>
+                <input type="number" id="quantity" placeholder="Quantity" min="0" required>
+                <input type="number" id="price" placeholder="Price ($)" step="0.01" min="0.01" required>
+                <input type="text" id="supplier" placeholder="Supplier" required>
+                <select id="stockStatus" required>
+                    <option value="In Stock">In Stock</option>
+                    <option value="Low Stock">Low Stock</option>
+                    <option value="Out of Stock">Out of Stock</option>
+                </select>
+                <label class="popular-label">
+                    <input type="checkbox" id="popular"> Popular Item
+                </label>
+                <textarea id="comment" placeholder="Comment (optional)" rows="3"></textarea>
+            </div>
+
+            <div class="button-group">
+                <button onclick="addOrUpdateItem()" class="btn-primary">Save Product</button>
+                <button class="btn-secondary">Clear Form</button>
+            </div>
+        </div>
+
+        <!-- 搜索和显示按钮 -->
+        <div class="search-section">
+            <input type="text" id="searchInput" placeholder="Search by product name...">
+            <button onclick="searchItem()" class="btn-search">Search</button>
+            <button onclick="showAllItems()" class="btn-info">Show All Products</button>
+            <button onclick="showPopularItems()" class="btn-info">Show Popular Items</button>
+        </div>
+
+        <!-- 库存表格 -->
+        <h2>Current Inventory</h2>
+        <table id="inventoryTable">
+            <thead>
+                <tr>
+                    <th>ID</th><th>Name</th><th>Category</th><th>Quantity</th><th>Price</th>
+                    <th>Supplier</th><th>Stock Status</th><th>Popular</th><th>Comment</th><th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <!-- 反馈信息区 -->
+        <div id="feedback" class="feedback"></div>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>

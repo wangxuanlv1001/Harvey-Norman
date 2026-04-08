@@ -1,14 +1,27 @@
 ﻿<h2>{{ editingOriginalName ? 'Edit Product' : 'Add Product' }}</h2>
+
+<!-- 独立的搜索框 -->
+<div class="search-load-section">
+  <input type="text" [(ngModel)]="searchName" placeholder="Enter product name to edit" class="search-input">
+  <button type="button" class="btn-search" (click)="loadForEdit()">Load for Edit</button>
+</div>
+
 <div *ngIf="message" [class]="messageType" class="feedback">{{ message }}</div>
+
 <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
   <div class="form-grid">
-    <input type="text" formControlName="id" placeholder="Item ID (unique)" required>
+    <!-- ID 输入框在编辑模式下自动禁用（只读） -->
+    <input type="text" formControlName="id" placeholder="Item ID (unique)">
     <input type="text" formControlName="name" placeholder="Product Name" required>
-    <select formControlName="category"><option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option></select>
+    <select formControlName="category">
+      <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+    </select>
     <input type="number" formControlName="quantity" placeholder="Quantity" min="0" step="1">
     <input type="number" formControlName="price" placeholder="Price ($)" min="0.01" step="0.01">
     <input type="text" formControlName="supplier" placeholder="Supplier" required>
-    <select formControlName="stockStatus"><option *ngFor="let s of stockStatuses" [value]="s">{{ s }}</option></select>
+    <select formControlName="stockStatus">
+      <option *ngFor="let s of stockStatuses" [value]="s">{{ s }}</option>
+    </select>
     <label><input type="checkbox" formControlName="popular"> Popular Item</label>
     <textarea formControlName="comment" placeholder="Comment (optional)" rows="3"></textarea>
   </div>

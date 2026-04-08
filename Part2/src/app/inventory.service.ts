@@ -1,5 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 import { Item } from './models/item';
+import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class InventoryService {
@@ -9,18 +10,23 @@ export class InventoryService {
     { id: "ITEM003", name: "Leather Jacket", category: "Clothing", quantity: 25, price: 189.99, supplier: "Levi's", stockStatus: "In Stock", popular: true, comment: "Popular winter item" }
   ];
 
-  getItems(): Item[] { return [...this.items]; }
-  getPopularItems(): Item[] { return this.items.filter(item => item.popular); }
-  searchByName(keyword: string): Item[] {
-    const lower = keyword.toLowerCase();
-    return this.items.filter(item => item.name.toLowerCase().includes(lower));
+  private itemsChangedSource = new Subject<void>();
+  itemsChanged$ = this.itemsChangedSource.asObservable();
+
+  private notifyChange(): void {
+    this.itemsChangedSource.next();
   }
+
+  getItems(): Item[] { return [...this.items]; }
+
   addItem(item: Item): { success: boolean; message: string } {
     if (this.items.some(i => i.id === item.id)) return { success: false, message: 'Item ID already exists!' };
     if (this.items.some(i => i.name === item.name)) return { success: false, message: 'Product name already exists!' };
     this.items.push({ ...item });
+    this.notifyChange();
     return { success: true, message: `Product "${item.name}" added successfully!` };
   }
+
   updateItem(originalName: string, updated: Item): { success: boolean; message: string } {
     const index = this.items.findIndex(i => i.name === originalName);
     if (index === -1) return { success: false, message: 'Product not found!' };
@@ -30,12 +36,21 @@ export class InventoryService {
     if (existing.name !== updated.name && this.items.some(i => i.name === updated.name))
       return { success: false, message: 'New product name already used!' };
     this.items[index] = { ...updated };
+    this.notifyChange();
     return { success: true, message: `Product "${updated.name}" updated successfully!` };
   }
+
   deleteItem(name: string): { success: boolean; message: string } {
     const index = this.items.findIndex(i => i.name === name);
     if (index === -1) return { success: false, message: 'Product not found!' };
     this.items.splice(index, 1);
+    this.notifyChange();
     return { success: true, message: `Product "${name}" deleted successfully!` };
+  }
+
+  getPopularItems(): Item[] { return this.items.filter(item => item.popular); }
+  searchByName(keyword: string): Item[] {
+    const lower = keyword.toLowerCase();
+    return this.items.filter(item => item.name.toLowerCase().includes(lower));
   }
 }
